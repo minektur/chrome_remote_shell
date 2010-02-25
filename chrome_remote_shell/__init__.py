@@ -6,16 +6,22 @@ with this option::
 
     google-chrome --remote-shell-port=9222
 
-Then you can connect from Python through code like this::
+Then you can connect from Python through code like this:
 
 >>> import chrome_remote_shell
->>> shell = chrome_remote_shell.open()
+>>> shell = chrome_remote_shell.open(port=9222)
 >>> shell.request('DevToolsService', command='ping')
 {u'data': u'ok', u'command': u'ping', u'result': 0}
 
 The protocol is described in detail at:
 
-  http://code.google.com/p/chromedevtools/wiki/ChromeDevToolsProtocol
+    http://code.google.com/p/chromedevtools/wiki/ChromeDevToolsProtocol
+
+As a convenience, the shell connection object offers a method that, by
+injecting JavaScript into the first tab, commands Chrome to open a URL
+in a new tab::
+
+    shell.open_url('http://www.aldaily.com/')
 
 """
 import json
