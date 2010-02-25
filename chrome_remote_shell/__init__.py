@@ -10,7 +10,7 @@ Then you can connect from Python through code like this::
 
 >>> import chrome_remote_shell
 >>> shell = chrome_remote_shell.open()
->>> shell.command('DevToolsService', command='ping')
+>>> shell.request('DevToolsService', command='ping')
 {u'data': u'ok', u'command': u'ping', u'result': 0}
 
 The protocol is described in detail at:
@@ -33,7 +33,7 @@ class Shell(object):
         self.socket.send(HANDSHAKE)
         assert self.socket.recv(len(HANDSHAKE)) == HANDSHAKE
 
-    def command(self, tool, destination=None, **kw):
+    def request(self, tool, destination=None, **kw):
         """Send a command to a tool supported by Google Chrome.
 
         `tool` - 'DevToolsService' or 'V8Debugger'
@@ -47,9 +47,21 @@ class Shell(object):
         request += '\r\n%s\r\n' % (j,)
         self.socket.send(request)
         if kw.get('command', '') not in RESPONSELESS_COMMANDS:
-            result = self.socket.recv(30000) # ugh
-            j = result.split('\r\n\r\n', 1)[1]
+            response = self.socket.recv(30000) # ugh
+            j = response.split('\r\n\r\n', 1)[1]
             return json.loads(j)
+
+    def open_url(self, url):
+        """Open a URL in a new tab."""
+        response = self.request('DevToolsService', command='list_tabs')
+        tabs = response['data']
+        first_tab = tabs[0]
+        tab_id = first_tab[0]
+        javascript = "window.open(%r, '_blank');" % (url,)
+        self.request('V8Debugger', destination=tab_id,
+                     command='evaluate_javascript', data=javascript)
+
+# Convenience function
 
 def open(host='localhost', port=9222):
     """Open a connection to the Google Chrome remote debugger."""
