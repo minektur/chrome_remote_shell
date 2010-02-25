@@ -15,7 +15,7 @@ Then you can connect from Python through code like this:
 
 The protocol is described in detail at:
 
-    http://code.google.com/p/chromedevtools/wiki/ChromeDevToolsProtocol
+http://code.google.com/p/chromedevtools/wiki/ChromeDevToolsProtocol
 
 As a convenience, the shell connection object offers a method that, by
 injecting JavaScript into the first tab, commands Chrome to open a URL

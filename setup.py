@@ -10,4 +10,10 @@ setup(
     author_email='brandon@rhodesmill.org',
     url='http://bitbucket.org/brandon/chrome_remote_shell/',
     packages=['chrome_remote_shell'],
+    classifiers=[
+        'Development Status :: 5 - Production/Stable',
+        'Intended Audience :: Developers',
+        'License :: OSI Approved :: GNU General Public License (GPL)',
+        'Topic :: Internet :: WWW/HTTP :: Browsers',
+        ],
     )
