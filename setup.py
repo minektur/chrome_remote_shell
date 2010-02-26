@@ -3,7 +3,7 @@ from distutils.core import setup
 
 setup(
     name='chrome_remote_shell',
-    version='1.0',
+    version='1.1',
     description='Client for talking to the Google Chrome remote shell port',
     long_description=chrome_remote_shell.__doc__.split('\n\n', 1)[1],
     author='Brandon Craig Rhodes',

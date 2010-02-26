@@ -23,8 +23,17 @@ in a new tab::
 
     shell.open_url('http://www.aldaily.com/')
 
+CHANGELOG
+---------
+
+*2009 Feb 26.* Added a conditional import of `simplejson` so that the
+module runs under Python 2.5.
+
 """
-import json
+try:
+    import json
+except ImportError:
+    import simplejson as json
 import socket
 
 HANDSHAKE = 'ChromeDevToolsHandshake\r\n'
