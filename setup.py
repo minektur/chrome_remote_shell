@@ -1,5 +1,10 @@
 import chrome_remote_shell
+import sys
 from distutils.core import setup
+
+requirements = []
+if sys.version_info < (2, 6):
+    requirements.append('simplejson')
 
 setup(
     name='chrome_remote_shell',
@@ -16,4 +21,5 @@ setup(
         'License :: OSI Approved :: GNU General Public License (GPL)',
         'Topic :: Internet :: WWW/HTTP :: Browsers',
         ],
+    install_requires=requirements,
     )
