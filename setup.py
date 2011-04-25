@@ -8,7 +8,7 @@ if sys.version_info < (2, 6):
 
 setup(
     name='chrome_remote_shell',
-    version='1.1',
+    version='1.2',
     description='Client for talking to the Google Chrome remote shell port',
     long_description=chrome_remote_shell.__doc__.split('\n\n', 1)[1],
     author='Brandon Craig Rhodes',
