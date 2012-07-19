@@ -1,5 +1,15 @@
 """Client for the Google Chrome browser's remote debugging shell.
 
+.. Warning::
+
+   The remote debugging shell has been removed
+   from recent versions of Google Chrome,
+   so this Python module is only of historical interest.
+   For more information about the browser's new protocol,
+   visit:
+
+   https://developers.google.com/chrome-developer-tools/docs/remote-debugging
+
 This library makes it easy to communicate with the Google Chrome remote
 debugging shell from Python.  To make the shell available, start Chrome
 with this option::
