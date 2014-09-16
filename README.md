@@ -24,10 +24,10 @@ running a dev app.
 Then you can connect from Python through code like this:
 
 #fixme new example api call
->>> import chrome_remote_shell
->>> shell = chrome_remote_shell.open(port=9222)
->>> shell.request('DevToolsService', command='ping')
-{u'data': u'ok', u'command': u'ping', u'result': 0}
+    >>> import chrome_remote_shell
+    >>> shell = chrome_remote_shell.open(port=9222)
+    >>> shell.request('DevToolsService', command='ping')
+    {u'data': u'ok', u'command': u'ping', u'result': 0}
 
 The protocol is composed of json messages described on the site above.
 
