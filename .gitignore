@@ -1,0 +1,7 @@
+include
+bin
+lib
+
+*.py[cod]
+
+.Python
