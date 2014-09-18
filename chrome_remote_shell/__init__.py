@@ -28,6 +28,7 @@ import json
 import requests
 import websocket
 
+
 class Shell(object):
     """A remote debugging connection to Google Chrome.
 
@@ -55,7 +56,6 @@ class Shell(object):
         self.tablist = None
         self.find_tabs()
 
-
     def connect(self, tab=None, update_tabs=True):
         """Open a websocket connection to remote browser, determined by
            self.host and self.port.  Each tab has it's own websocket
@@ -70,35 +70,34 @@ class Shell(object):
         self.soc = websocket.create_connection(wsurl)
         return self.soc
 
-
     def close(self):
         """ Close websocket connection to remote browser."""
         if self.soc:
             self.soc.close()
             self.soc = None
 
-
     def find_tabs(self):
         """Connect to host:port and request list of tabs
              return list of dicts of data about open tabs."""
         # find websocket endpoint
         response = requests.get("http://%s:%s/json" % (self.host, self.port))
-        self.tablist  = json.loads(response.text)
+        self.tablist = json.loads(response.text)
         return self.tablist
-
 
     def open_url(self, url):
         """Open a URL in the oldest tab."""
         if not self.soc:
             self.connect(tab=0)
-        #force the 'oldest' tab to load url
-        navcom = json.dumps({"id":0,
-                              "method":"Page.navigate",
-                              "params":{"url":url}})
+        # force the 'oldest' tab to load url
+        navcom = json.dumps({"id": 0,
+                             "method": "Page.navigate",
+                             "params": {"url": url}})
         # This code would open a new window, but browsers really dont
         # like doing so.  And, the results are irritating at best.
         # navcom=json.dumps({"id":0,"method":"Runtime.evaluate",
-        #                    "params":{"expression": "window.open('%s', '_blank', 'toolbar=1,scrollbars=1,location=1,statusbar=0,menubar=1,resizable=1')" % (url) }})
+        #  "params":{"expression": "window.open('%s', #'_blank',
+        # 'toolbar=1,scrollbars=1,location=1,statusbar=0,menubar=1,resizable=1'
+        # )" % (url) }})
         self.soc.send(navcom)
         return self.soc.recv()
 
@@ -106,5 +105,3 @@ class Shell(object):
 if __name__ == '__main__':
     import doctest
     doctest.testmod()
-
-
