@@ -49,7 +49,7 @@ in a new tab::
 #CHANGELOG
 *2014 Sept 15.* Updated to work with modern Chrome Remote Debugging protocol
 
-*2014 Sept 15.* Package maintaince (HOPEFULLY, #FIXME) transitioned to Fred Clift
+*2014 Sept 15.* Package maintaince transitioned to Fred Clift
 
 *2014 Sept 15.* Package migrated to GitHub.
 
